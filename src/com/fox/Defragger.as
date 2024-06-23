@@ -75,7 +75,6 @@ class com.fox.Defragger
 		{
 			Fragments[i] = 0;
 		}
-		var InventoryItems:Object = {};
 		for (var i = 0; i < m_Inventory.GetMaxItems(); i++)
 		{
 			var item:InventoryItem = m_Inventory.GetItemAt(i);
@@ -83,7 +82,6 @@ class com.fox.Defragger
 			{
 				if ( Fragments[item.m_ACGItem.m_TemplateID0] != undefined) {
 					Fragments[item.m_ACGItem.m_TemplateID0] += item.m_StackSize;
-					InventoryItems[item.m_ACGItem.m_TemplateID0] = item;
 				}
 			}
 		}
