@@ -38,6 +38,7 @@ class com.fox.Defragger
 		
 		Fragments[9455912] = 0; // Elaborate Glyph Fragment
 		Fragments[9455913] = 0; // Resplendent Talisman Fragments
+		Fragments[9455914] = 0; // Mk IV Weapon Fragments
 	}
 	
 	public function Load()
