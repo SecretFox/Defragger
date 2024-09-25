@@ -10,10 +10,12 @@ import com.Utils.Colors;
 import com.Utils.Format;
 import com.Utils.ID32;
 import com.Utils.LDBFormat;
+import com.fox.Defragger;
 import mx.utils.Delegate;
  
 class com.fox.Defragger 
 {
+	static var Mod:Defragger;
 	public var m_SwfRoot:MovieClip;
 	public var timeout:Number;
 	public var m_Inventory:Inventory;
@@ -21,9 +23,9 @@ class com.fox.Defragger
 	
 	public static function main(swfRoot:MovieClip):Void
 	{
-		var s_app = new Defragger(swfRoot);
-		swfRoot.onLoad = function(){s_app.Load()};
-		swfRoot.onUnload = function(){s_app.Unload()};
+		Mod = new Defragger(swfRoot);
+		swfRoot.onLoad = function(){Defragger.Mod.Load()};
+		swfRoot.onUnload = function(){Defragger.Mod.Unload()};
 	}
 
 	public function Defragger(root) {
@@ -46,11 +48,10 @@ class com.fox.Defragger
 		m_Inventory = new Inventory(new ID32(_global.Enums.InvType.e_Type_GC_BackpackContainer, CharacterBase.GetClientCharID().GetInstance()));
 		if (!CharacterBase.SendLootBoxReply.base)
 		{
-			var delegate = Delegate.create(this, SendLootBoxReply);
 			var f:Function = function()		{
 				if ( arguments[0] == true )
 				{
-					delegate();
+					Defragger.Mod.SendLootBoxReply();
 				}
 				arguments.callee.base.apply(this, arguments);
 			};
